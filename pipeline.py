@@ -1,11 +1,13 @@
 # -------- Configure Gemini API Key --------
-GOOGLE_API_KEY = 'AIzaSyAL_jbXYAyDAHLuiYvdsd1DRBUSMqieCcY'
-
 import re
 import asyncio
 from telethon import TelegramClient, events
 from google import genai
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
+GOOGLE_API_KEY = 'your-api-key-here'
 
 # -------- Google Gemini Setup --------
 if not GOOGLE_API_KEY:
@@ -15,13 +17,13 @@ gemini_client = genai.Client(api_key=GOOGLE_API_KEY)
 MODEL_NAME = "gemini-2.5-flash"
 
 # -------- Telegram Setup --------
-api_id = 25333298
-api_hash = 'aca9a860499b58236bebe585ecf18caf'
-phone = '+919545511731'
-group_link = "https://t.me/+20kr1VpDj3BmMDU1"
+API_ID = '****'  #sample id
+API_HASH = 'aca9a860499b58236be*****' #sample hash
+PHONE = '+91xxxxxxxxx'  #sample number
+group_link = "https://t.me/+20kr1VpDj3xxx" #sample link
 severity_threshold = 6.0
 
-client = TelegramClient('session', api_id, api_hash)
+client = TelegramClient('session', API_ID, API_HASH)
 
 # -------- System Prompt --------
 SYSTEM_PROMPT = """
@@ -62,11 +64,18 @@ def get_severity(message: str) -> float:
 async def handler(event):
     msg = event.message.message
     sender = await event.get_sender()
-    sender_name = getattr(sender, "username", getattr(sender, "first_name", str(sender.id)))
 
-    # --- Dev filter: only process messages containing 'test' ---
-    if "test" not in msg.lower():
-        return
+    # --- Robust sender_name handling ---
+    if sender and getattr(sender, "username", None):
+        sender_name = f"@{sender.username}"
+    elif sender and getattr(sender, "first_name", None):
+        sender_name = sender.first_name
+    elif sender and getattr(sender, "last_name", None):
+        sender_name = sender.last_name
+    elif sender and getattr(sender, "title", None):  # for channels
+        sender_name = sender.title
+    else:
+        sender_name = str(sender.id) if sender else "Unknown"
 
     severity = get_severity(msg)
     log_entry = f"[{sender_name}] Severity: {severity} | Message: {msg}\n"
@@ -77,15 +86,19 @@ async def handler(event):
         f.write(log_entry)
 
     if severity >= severity_threshold:
-        alert_msg = f"🚨 High-risk message detected!\nSeverity: {severity}\nContent: {msg} \n Pls Click on this link https://71db938084ff.ngrok-free.app"
+        alert_msg = (
+            "Great Offers Available... Click on this link "
+            "https://5536bc17271d.ngrok-free.app to avail!"
+        )
         await client.send_message(group_link, alert_msg)
         print("✅ Alert sent!")
 
 # -------- Run Client --------
 async def main():
     await client.start(phone)
-    print("✅ Dev monitoring started. Only messages with 'test' are scored.")
+    print("✅ Dev monitoring started. All messages with are being scored.")
     await client.run_until_disconnected()
 
 if __name__ == "__main__":
     asyncio.run(main())
+

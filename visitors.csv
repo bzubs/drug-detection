@@ -1,0 +1,10 @@
+timestamp,ip,country,region,city,isp,vpn,reason,email,phone
+2025-08-28 22:38:13,2402:e280:3e64:7ae:94b4:5944:bbd9:1d96,India,Maharashtra,Pune,Tata Play Broadband Private Limited,False,Likely residential,N/A,N/A
+2025-08-28 22:38:36,106.221.209.214,India,Maharashtra,Pune,Bharti Airtel Limited,False,Likely residential,N/A,N/A
+2025-08-28 22:38:53,106.221.209.214,India,Maharashtra,Pune,Bharti Airtel Limited,False,Likely residential,N/A,N/A
+2025-08-28 22:41:37,106.221.209.214,India,Maharashtra,Pune,Bharti Airtel Limited,False,Likely residential,N/A,N/A
+2025-08-28 22:41:45,106.221.209.214,India,Maharashtra,Pune,Bharti Airtel Limited,False,Likely residential,email,phone
+2025-08-28 22:42:07,106.221.209.214,India,Maharashtra,Pune,Bharti Airtel Limited,False,Likely residential,siddhant1100115@gmail.com,99999
+2025-08-28 22:45:31,149.154.161.199,United Kingdom,England,London,Telegram Messenger San Francisco Network,False,Likely residential,N/A,N/A
+2025-08-28 22:45:44,106.221.209.214,India,Maharashtra,Pune,Bharti Airtel Limited,False,Likely residential,N/A,N/A
+2025-08-28 22:45:58,106.221.209.214,India,Maharashtra,Pune,Bharti Airtel Limited,False,Likely residential,siddhant1100115@gmail.co,9999

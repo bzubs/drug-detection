@@ -47,7 +47,6 @@ pip-delete-this.txt
 .vscode/
 
 # CSV and log files
-*.csv
 *.log
 
 # Environment variables
