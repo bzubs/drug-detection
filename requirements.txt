@@ -1,0 +1,7 @@
+flask
+streamlit
+pandas
+scikit-learn
+requests
+telethon
+google-generativeai
